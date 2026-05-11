@@ -3,6 +3,7 @@ $cats = db()->query('SELECT * FROM categories ORDER BY name')->fetchAll(PDO::FET
 $products = db()->query('SELECT p.*, c.name category FROM products p JOIN categories c ON c.id=p.category_id WHERE p.is_active=1 ORDER BY p.id DESC')->fetchAll(PDO::FETCH_ASSOC);
 $quickCats=['Classic','Veggie','BBQ','Pasta','Desserts','Drinks'];
 ?>
+
 <section class="menu-hero">
   <div class="wrap">
     <h1>Hot &amp; Fresh Pizza Delivered Fast</h1>
@@ -30,4 +31,5 @@ $quickCats=['Classic','Veggie','BBQ','Pasta','Desserts','Drinks'];
 <?php endforeach; ?>
 </div></section>
 <a class="mobile-cart-cta" href="cart.php">View Cart</a>
+
 <?php include '../includes/footer.php'; ?>
