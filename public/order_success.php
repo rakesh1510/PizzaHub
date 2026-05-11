@@ -1,0 +1,1 @@
+<?php include '../includes/header.php'; ?><h2>Order Success</h2><p>Your order <?=e($_GET['order']??'')?> was placed successfully.</p><a class="btn" href="orders.php">View my orders</a><?php include '../includes/footer.php'; ?>

@@ -1,0 +1,6 @@
+<?php require_once '../../config/config.php'; requireAdmin();
+if($_SERVER['REQUEST_METHOD']==='POST'){
+  db()->prepare('INSERT INTO products(category_id,name,slug,description,base_price) VALUES(?,?,?,?,?)')->execute([$_POST['category_id'],$_POST['name'],strtolower(trim(preg_replace('/\s+/','-',$_POST['name']))),$_POST['description'],$_POST['base_price']]);$pid=db()->lastInsertId();
+  foreach(['Small','Medium','Large','Family'] as $s){db()->prepare('INSERT INTO product_sizes(product_id,size_name,price) VALUES(?,?,?)')->execute([$pid,$s,$_POST['price_'.$s]]);} }
+$cats=db()->query('SELECT * FROM categories')->fetchAll(PDO::FETCH_ASSOC);$rows=db()->query('SELECT p.*,c.name category FROM products p JOIN categories c ON c.id=p.category_id ORDER BY p.id DESC')->fetchAll(PDO::FETCH_ASSOC);
+?><h2>Products</h2><form method="post"><input name="name" placeholder="Name"><textarea name="description"></textarea><select name="category_id"><?php foreach($cats as $c) echo '<option value="'.$c['id'].'">'.$c['name'].'</option>'; ?></select><input name="base_price" placeholder="Base price"><?php foreach(['Small','Medium','Large','Family'] as $s) echo '<input name="price_'.$s.'" placeholder="'.$s.' price">'; ?><button>Add Product</button></form><?php foreach($rows as $r) echo '<p>'.e($r['name']).' - '.e($r['category']).'</p>'; ?>

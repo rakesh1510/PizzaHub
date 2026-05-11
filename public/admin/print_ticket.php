@@ -1,0 +1,2 @@
+<?php require_once '../../config/config.php'; requireAdmin(); $st=db()->prepare('SELECT * FROM orders WHERE id=?');$st->execute([$_GET['id']]);$o=$st->fetch(PDO::FETCH_ASSOC);$it=db()->prepare('SELECT * FROM order_items WHERE order_id=?');$it->execute([$o['id']]);?><h3>Kitchen Ticket <?=$o['order_number']?></h3><?php foreach($it as $i) echo '<p>'.$i['qty'].'x '.e($i['product_name']).' '.$i['size_name'].' '.$i['crust'].'</p>'; ?>
+<script>window.print()</script>
