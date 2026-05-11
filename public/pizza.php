@@ -12,9 +12,11 @@ if($_SERVER['REQUEST_METHOD']==='POST'){
   header('Location: cart.php');exit;
 }
 ?>
-<h2><?=e($p['name'])?></h2><p><?=e($p['description'])?></p>
-<form method="post"><label>Size</label><select name="size_name"><?php foreach($sizes as $s): ?><option><?=e($s['size_name'])?></option><?php endforeach; ?></select>
+<section class="section"><div class="wrap"><div class="card"><h1><?=e($p['name'])?></h1><p><?=e($p['description'])?></p>
+<form method="post" class="checkout-form">
+<label>Size</label><select name="size_name"><?php foreach($sizes as $s): ?><option><?=e($s['size_name'])?></option><?php endforeach; ?></select>
 <label>Crust</label><select name="crust"><option>Thin</option><option>Classic</option><option>Cheese crust</option></select>
 <label>Extra toppings</label><?php foreach($tops as $t): ?><div><input type="checkbox" name="toppings[]" value="<?=$t['id']?>"> <?=e($t['name'])?> (+<?=money($t['extra_price'])?>)</div><?php endforeach; ?>
-<label>Qty</label><input name="qty" type="number" value="1" min="1"><button class="btn">Add to cart</button></form>
+<label>Quantity</label><div class="qty-row"><button type="button" data-qty-change="-1" data-target="#pizzaQty">-</button><input id="pizzaQty" name="qty" type="number" value="1" min="1"><button type="button" data-qty-change="1" data-target="#pizzaQty">+</button></div>
+<button class="btn">Add to cart</button></form></div></div></section>
 <?php include '../includes/footer.php'; ?>
