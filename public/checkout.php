@@ -17,8 +17,7 @@ if($_SERVER['REQUEST_METHOD']==='POST'){
       foreach($tops as $t){db()->prepare('INSERT INTO order_item_toppings(order_item_id,topping_name,extra_price) VALUES(?,?,?)')->execute([$oi,$t['name'],$t['extra_price']]);}
     }
     if($pay==='stripe'){ db()->prepare('INSERT INTO payments(order_id,provider,amount,status) VALUES(?,?,?,?)')->execute([$oid,'stripe',$total,'pending']); header('Location: payment_pending.php?order='.$num.'&payment=required&method=stripe'); exit; }
-    $offlineProvider = in_array($pay,['cod','pay_at_restaurant'],true) ? 'cash' : 'cash';
-    db()->prepare('INSERT INTO payments(order_id,provider,amount,status) VALUES(?,?,?,?)')->execute([$oid,$offlineProvider,$total,'pending']);
+    db()->prepare('INSERT INTO payments(order_id,provider,amount,status) VALUES(?,?,?,?)')->execute([$oid,'cash',$total,'pending']);
     db()->prepare('DELETE FROM cart WHERE session_id=?')->execute([cartSessionId()]);
     header('Location: order_success.php?order='.$num.'&payment=pending');exit;
   }
