@@ -1,25 +1,41 @@
-# PizzaHaus - Premium Pizza Ordering System (PHP + MySQL)
+# PizzaHaus — Premium PHP + MySQL Pizza Ordering System
 
-Modern restaurant-style ordering platform with online and offline order management.
+PizzaHaus is a complete restaurant ordering platform with a modern customer site and admin management panel.
 
-## Folder structure
-- `config/` app config
-- `includes/` shared header/footer
-- `public/` customer pages
-- `public/admin/` admin panel
-- `public/auth/` login/register
-- `public/assets/css/style.css` premium UI styling
-- `database.sql` schema + seed data
+## Core stack
+- PHP (PDO)
+- MySQL
+- HTML/CSS/JavaScript
+- Stripe Checkout flow placeholder (no custom card fields)
 
-## Implemented pages
-- Home, About, Menu, Pizza Detail, Cart, Checkout, Order Success, My Orders, Contact, Login/Register
-- Admin: Login, Dashboard, Products, Categories, Toppings, Orders, Offline Order Create, Print pages
+## Customer pages
+- Home
+- About
+- Menu
+- Pizza Detail
+- Cart
+- Checkout
+- Order Success
+- My Orders
+- Contact
+- Login / Register
+
+## Admin pages
+- Admin Login
+- Dashboard
+- Products / Pizzas
+- Categories
+- Toppings
+- Orders (online/offline)
+- Offline Order Creation
+- Kitchen Ticket / Customer Receipt printing
 
 ## Setup
-1. Import `database.sql` in MySQL.
-2. Update DB config in `config/config.php`.
-3. Run app and open `/public`.
+1. Import `database.sql` into MySQL.
+2. Update database credentials in `config/config.php`.
+3. Serve the project and open `/public`.
 
-## Payment notes
-- Stripe Checkout should be used for card payment flow.
-- No custom card fields are used in PHP forms.
+## Notes
+- Uses prepared statements across data access.
+- Supports delivery and pickup.
+- Supports payment methods: Stripe Checkout, cash on delivery, pay at restaurant.
