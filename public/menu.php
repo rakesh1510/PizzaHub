@@ -11,8 +11,8 @@ $quickCats=['Classic','Veggie','BBQ','Pasta','Desserts','Drinks'];
   </div>
 </section>
 <section class="info-strip"><div class="wrap"><span>Fresh Ingredients</span><span>Fast Delivery</span><span>Pickup Available</span><span>Secure Checkout</span></div></section>
-<section class="category-tabs"><div class="wrap"><?php foreach($quickCats as $qc): ?><a href="#" class="tab-pill"><?=e($qc)?></a><?php endforeach; ?></div></section>
-<section class="section" id="menu-grid"><div class="wrap"><h2>Menu</h2><input id="menuSearch" placeholder="Search pizza, pasta, drinks..." class="search">
+<section class="category-tabs"><div class="wrap"><?php foreach($quickCats as $qc): ?><a href="#menu-grid" class="tab-pill"><?=e($qc)?></a><?php endforeach; ?></div></section>
+<section class="section" id="menu-grid"><div class="wrap"><h2>Explore Our Menu</h2><input id="menuSearch" placeholder="Search pizza, pasta, drinks..." class="search">
 <?php foreach($cats as $c): ?>
   <div class="menu-cat-block"><h3><?=e($c['name'])?></h3><div class="menu-grid">
   <?php foreach($products as $p): if($p['category_id']!=$c['id']) continue; ?>
